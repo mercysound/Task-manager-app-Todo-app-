@@ -1,11 +1,11 @@
 .inpBg{
-  /* background-clip: url(./asset/index.html.mp4); */
-  /* background-size: contain; */
-  /* background-repeat: repeat; */
+  background-clip: url(./asset/index.html.mp4);
+  background-size: contain;
+  background-repeat: repeat;
   /* background-clip: ; */
-  /* background-color: rgba(153, 153, 139, 0.8); */
+  background-color: rgba(66, 52, 48, 0.7)
 
-  background-size: 70%, 50%;
+  /* background-size: 70%, 50%; */
   
 }
 #video-background{

@@ -38,7 +38,7 @@ const addTodo = () => {
         // var min = currentDate.getMinutes()
         // var currentTimeAdded = "Current time Added: " + hr +":"+ min
         var currentTimeEdit = "Current time Edited: " + currentTime
-        let todoProps = {inpTodo: todoInp, todoStatus: false, addTime: ("Current Time String:", currentTimeEdit)}
+        let todoProps = {inpTodo: todoInp, todoStatus: false, addTime: currentTimeEdit}
         // historyArr.push(currentDate)
         todoArr[saveEditIndex] = todoProps
         document.getElementById("inpTodo").value = ""
@@ -78,9 +78,9 @@ const showTodo = () =>{
   let arraySpace = ""
   for(let i = 0; i < todoArr.length; i++){
     if(todoArr[i].todoStatus){
-      arraySpace += `<div class="shadow w-100  mx-auto my-3 py-2 text-success d-flex justify-content-between"><span>${"You completed task @ : "+currentTime}</span>${i+1}. ${todoArr[i].inpTodo} <span class="">Successfully Done</span><button class="btn btn-warning" onclick="deleteTodo(${i})">Delete Todo</button></div>`
+      arraySpace += `<div class="shadow w-100 fs-5 mx-auto my-3 py-2 text-info  d-flex justify-content-between"><span class="text-warning me-5">${"Task done @ "+currentTime}<span class="text-success fw-bold mx-5 fs-3">${i+1}. ${todoArr[i].inpTodo}</span></span> <span class="text-success fw-bolder">Successfully Done <button class=" text-light btn btn-outline-warning" onclick="deleteTodo(${i})">Delete Todo</button></span></div>`
     }else{
-      arraySpace += `<div class="shadow w-100 mx-auto my-3 py-2 d-flex justify-content-between text-danger"><span>${"You add new Task @ : "+currentTime}</span><span>${i+1}. ${todoArr[i].inpTodo}  </span> <div><button onclick="markDone(${i})" class="btn btn-danger">Mark as done</button><button onclick="editTodo(${i})" class="btn btn-primary mx-2">Edit Todo</button></div></div>` 
+      arraySpace += `<div class="shadow w-100 fs-5 mx-auto my-3 py-2 d-flex justify-content-between text-danger "><span class="text-warning">${"Task added @ "+currentTime} <span class="mx-5 fs-3 fw-bolder">${i+1}. ${todoArr[i].inpTodo} </span></span><div><button onclick="markDone(${i})" class=" text-light btn btn-outline-danger">Mark as done</button><button onclick="editTodo(${i})" class="text-light btn btn-outline-primary mx-2">Edit Todo</button></div></div>` 
     }
     // else{
     // arraySpace += `<div class="shadow w-50 mx-auto text-primary my-2 py-2">${todoArr[i].inpTodo}</div>` 
