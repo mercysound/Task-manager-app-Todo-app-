@@ -1,0 +1,22 @@
+.inpBg{
+  /* background-clip: url(./asset/index.html.mp4); */
+  /* background-size: contain; */
+  /* background-repeat: repeat; */
+  /* background-clip: ; */
+  /* background-color: rgba(153, 153, 139, 0.8); */
+
+  background-size: 70%, 50%;
+  
+}
+#video-background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  /* background: linear-gradient( 40deg,);
+   */
+   
+}
