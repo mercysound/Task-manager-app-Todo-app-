@@ -4,12 +4,14 @@ isEditing = false
 var saveEditIndex;
 var historyArr = []
 // var editNo;
+// var userName = prompt("What is your name") 
 
 var currentDate = new Date
 var hr = currentDate.getHours()
 var min = currentDate.getMinutes()
 // var currentTimeAdded = "Current time Added: " + hr +":"+ min
 var currentTime = `${hr}:${min}`
+var currentTimeEdit = "Current time Edited: " + currentTime
 
 // let editArray
 
@@ -38,9 +40,10 @@ const addTodo = () => {
         // var min = currentDate.getMinutes()
         // var currentTimeAdded = "Current time Added: " + hr +":"+ min
         var currentTimeEdit = "Current time Edited: " + currentTime
-        let todoProps = {inpTodo: todoInp, todoStatus: false, addTime: currentTimeEdit}
+        // var currentTimeEdit = "Current time Edited: " + currentTime
+        let todoProps = {inpTodo: todoInp, todoStatus: false, saveArry: false, addTime: currentTimeEdit}
         // historyArr.push(currentDate)
-        todoArr[saveEditIndex] = todoProps
+        // todoArr[saveEditIndex] = todoProps
         document.getElementById("inpTodo").value = ""
         document.getElementById("inpTodo").focus()
         updateTodoBtn.innerHTML = "Add Todo"
@@ -55,8 +58,8 @@ const addTodo = () => {
       alert("input your to to continue")
     }else{
       let todoInp = document.getElementById("inpTodo").value
-      var currentTimeEdit = "Current time Added: " + currentTime
-      let todoProps = {inpTodo: todoInp, todoStatus: false, addTime: currentTimeEdit}
+      var currentTimeEdit = "Time added: " + currentTime
+      let todoProps = {inpTodo: todoInp, todoStatus: false, saveArry: false,addTime: currentTimeEdit}
       todoArr.push(todoProps)
       document.getElementById("inpTodo").value = ""
       document.getElementById("inpTodo").focus()
@@ -95,6 +98,7 @@ const deleteTodo = (i) =>{
   let  validConfir = confirm("Are you sure to delete no " + `"${i+1}"` + " Todo task")
   if(validConfir == true){
     let filterTodoArr = todoArr.filter((item, index) => (index != i))
+ 
   // console.log(filterTodoArr);
   todoArr = filterTodoArr
   showTodo()
@@ -102,11 +106,16 @@ const deleteTodo = (i) =>{
   }
 
 }
+var saveArry = []
 const markDone = (index) =>{
+ 
   // alert("work")
   
   todoArr[index].todoStatus = true;
-  // todoArr.length.slice(index) = todoArr 
+  // todoArr[index].saveArry = true;
+  var currentTimeMark = "Mark done: " + currentTime
+  todoArr[index].addTime = currentTimeMark
+  historyArr.push(todoArr[index] = todoArr[index])
   showTodo()
   funCount()
   updateLocalsto()
@@ -114,6 +123,7 @@ const markDone = (index) =>{
   // console.log(todoArr[index]);
   
 }
+
 const clearTodo = () =>{
   // alert("work")
   let clearTodoconfirm = confirm("Are you sure to clear all Todo")
@@ -136,34 +146,16 @@ const editTodo = (i) =>{
 
   saveEditIndex = (i)
   isEditing = true
-  
-  // let editIndex = todoArr.filter(e => e == todoArr.i)
   updateTodoBtn.innerHTML = "Update Edit"
-
-
-
-  // todoArr == deleteInd;
-  // console.log(editIndex);
 }
 
 const funCount = () =>{
   let pending = todoArr.filter(a => !a.todoStatus)
-  // for the forloop 
-  //pending = 0;
-  //let i;
-  // for(i = 0; i < todoArr.length; i++){
-  //   if(!todoArr[i].todoStatus){
-  //     pending += 1
-  //   }
-  // }
   if(pending.length == 0 && todoArr){
     document.getElementById("showCount").innerHTML = `<p>You have no pending task yet</p>`
   }else if(pending.length == 1 && todoArr){
     document.getElementById("showCount").innerHTML = `<p>You have ${pending.length} pending task</p>`
   }else if(pending.length > 1 && todoArr.length){
-    // let pending;
-    // document.getElementById("showCount").innerHTML = `<div class="disp-4">${(todoArr.length < 2? " You have " + todoArr.length + " task pending " : " You have " + todoArr.length + " tasks pending" )}  <span></span></div>` 
-    // document.getElementById("showCount").innerHTML = `<div class="disp-4">${pending = todoArr.filter(a => !a.todoStatus)?" You have " + pending.length + " task pending " : todoArr.length < 2? " You have " + todoArr.length + " task pending " : " You have " + todoArr.length + " tasks pending" }  <span></span></div>` 
     document.getElementById("showCount").innerHTML = `<p>You have ${pending.length} pending tasks</p>`
   }
   // console.log(todoArr.length);
@@ -182,11 +174,6 @@ const todoHistory = () =>{
         <td>${item.addTime}</td>
       </tr>
     `
-    //   <tr>
-    //   <td>`${index+1}`</td>
-    //   {/* <td>{item.addTime}</td> */}
-    // </tr>
-    
     ))
     document.getElementById("tBody").innerHTML =  todoContent
 }
