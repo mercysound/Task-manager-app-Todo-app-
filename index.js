@@ -4,7 +4,8 @@ isEditing = false
 var saveEditIndex;
 var historyArr = []
 // var editNo;
-// var userName = prompt("What is your name") 
+userName.innerHTML = prompt("What is your name") 
+
 
 var currentDate = new Date
 var hr = currentDate.getHours()
