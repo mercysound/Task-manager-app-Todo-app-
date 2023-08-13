@@ -82,7 +82,7 @@ const showTodo = () =>{
   let arraySpace = ""
   for(let i = 0; i < todoArr.length; i++){
     if(todoArr[i].todoStatus){
-      arraySpace += `<div class="shadow w-100 fs-5 mx-auto my-3 py-2 text-info  d-flex justify-content-between"><span class="text-warning me-5">${"Task done @ "+currentTime}<span class="text-success fw-bold mx-5 fs-3">${i+1}. ${todoArr[i].inpTodo}</span></span> <span class="text-success fw-bolder">Successfully Done <button class=" text-light btn btn-outline-warning" onclick="deleteTodo(${i})">Delete Todo</button></span></div>`
+      arraySpace += `<div class="shadow w-100 fs-5 mx-auto my-3 py-2 text-info  d-flex justify-content-between"><span class="text-warning me-5">${"Task done @ "+currentTime}<span class="text-success fw-bolder mx-5 fs-3">${i+1}. ${todoArr[i].inpTodo}</span></span> <span class="text-success fw-bolder">Successfully Done <button class=" text-light btn btn-outline-warning" onclick="deleteTodo(${i})">Delete Todo</button></span></div>`
     }else{
       arraySpace += `<div class="shadow w-100 fs-5 mx-auto my-3 py-2 d-flex justify-content-between text-danger "><span class="text-warning">${"Task added @ "+currentTime} <span class="mx-5 fs-3 fw-bolder">${i+1}. ${todoArr[i].inpTodo} </span></span><div><button onclick="markDone(${i})" class=" text-light btn btn-outline-danger">Mark as done</button><button onclick="editTodo(${i})" class="text-light btn btn-outline-primary mx-2">Edit Todo</button></div></div>` 
     }
