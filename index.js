@@ -44,7 +44,7 @@ const addTodo = () => {
         // var currentTimeEdit = "Current time Edited: " + currentTime
         let todoProps = {inpTodo: todoInp, todoStatus: false, saveArry: false, addTime: currentTimeEdit}
         // historyArr.push(currentDate)
-        // todoArr[saveEditIndex] = todoProps
+        todoArr[saveEditIndex] = todoProps
         document.getElementById("inpTodo").value = ""
         document.getElementById("inpTodo").focus()
         updateTodoBtn.innerHTML = "Add Todo"
