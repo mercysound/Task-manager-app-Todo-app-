@@ -7,11 +7,12 @@ var historyArr = []
 userName.innerHTML = prompt("What is your name") 
 
 
-var currentDate = new Date
-var hr = currentDate.getHours()
-var min = currentDate.getMinutes()
+var currentDate = new Date;
+// var hr = currentDate.getHours()
+// var min = currentDate.getMinutes()
 // var currentTimeAdded = "Current time Added: " + hr +":"+ min
-var currentTime = `${hr}:${min}`
+var currentTime = currentDate.toLocaleTimeString()
+console.log(currentTime);
 var currentTimeEdit = "Current time Edited: " + currentTime
 
 // let editArray
@@ -32,7 +33,7 @@ const addTodo = () => {
     let confirmEdit = confirm(`are you sure to save edit todo no:  ${editNo+1}`)
     if(confirmEdit == true){
       if(document.getElementById("inpTodo").value == ""){
-        alert("input your to to continue")
+        alert("Enter your task to continue")
       }else{
         // var currentTimeAdded = hr +":"+ min;
         let todoInp = document.getElementById("inpTodo").value
@@ -56,7 +57,7 @@ const addTodo = () => {
   }else{
     // alert("here i")
     if(document.getElementById("inpTodo").value == ""){
-      alert("input your to to continue")
+      alert("Enter your task to continue")
     }else{
       let todoInp = document.getElementById("inpTodo").value
       var currentTimeEdit = "Time added: " + currentTime
@@ -82,9 +83,10 @@ const showTodo = () =>{
   let arraySpace = ""
   for(let i = 0; i < todoArr.length; i++){
     if(todoArr[i].todoStatus){
-      arraySpace += `<div class="shadow w-100 fs-5 mx-auto my-3 py-2 text-info  d-flex justify-content-between"><span class="text-warning me-5">${"Task done @ "+currentTime}<span class="text-success fw-bolder mx-5 fs-3">${i+1}. ${todoArr[i].inpTodo}</span></span> <span class="text-success fw-bolder">Successfully Done <button class=" text-light btn btn-outline-warning" onclick="deleteTodo(${i})">Delete Todo</button></span></div>`
+      arraySpace += `<div class="shadow w-100 fs-5 mx-auto my-3 py-2 text-info  d-flex justify-content-between text-center text-success"><span class="text-warning me-5">${"Done "+currentTime}<span class="text-success fw-bolder col-xl-mx-5 fs-3"> ${i+1+". " +todoArr[i].inpTodo}</span></span> <span class="text-success fw-bolder">Successful <i class="fa-solid fa-trash fa-fade" style="color: red;" onclick="deleteTodo(${i})"> Delete</i></span></div>`
     }else{
-      arraySpace += `<div class="shadow w-100 fs-5 mx-auto my-3 py-2 d-flex justify-content-between text-danger "><span class="text-warning">${"Task added @ "+currentTime} <span class="mx-5 fs-3 fw-bolder">${i+1}. ${todoArr[i].inpTodo} </span></span><div><button onclick="markDone(${i})" class=" text-light btn btn-outline-danger">Mark as done</button><button onclick="editTodo(${i})" class="text-light btn btn-outline-primary mx-2">Edit Todo</button></div></div>` 
+      arraySpace += `<div class="shadow w-100 fs-5 mx-auto my-3 py-2 d-flex  text-danger  justify-content-between text-center"><span class="text-warning">${"Task added @ "+currentTime} <span class="col-xl-mx-5 fs-3 fw-bolder"> ${i+1 +". " + todoArr[i].inpTodo} </span></span><div class=""><i class="fa-sharp fa-solid fa-check fa-bounce me-4" style="color: #00ff88;" onclick="markDone(${i})"> Mark Done</i>
+      <i class="fa-regular fa-pen-to-square fa-fade" onclick="editTodo(${i})" style="color: #fbf323;"> Edit Todo</i></div></div>` 
     }
     // else{
     // arraySpace += `<div class="shadow w-50 mx-auto text-primary my-2 py-2">${todoArr[i].inpTodo}</div>` 
@@ -112,6 +114,7 @@ const markDone = (index) =>{
  
   // alert("work")
   
+  document.getElementById("inpTodo").value = ""
   todoArr[index].todoStatus = true;
   // todoArr[index].saveArry = true;
   var currentTimeMark = "Mark done: " + currentTime
@@ -130,11 +133,11 @@ const clearTodo = () =>{
   let clearTodoconfirm = confirm("Are you sure to clear all Todo")
   if(clearTodoconfirm == true){
     todoArr.length = 0;
-     document.getElementById("inpTodo").value = ""
-     document.getElementById("inpTodo").focus()
-     updateTodoBtn.innerHTML = "Add Todo"
+    document.getElementById("inpTodo").focus()
+    updateTodoBtn.innerHTML = "Add Todo"
     showTodo()
     updateLocalsto()
+    document.getElementById("inpTodo").value = ""
   }
 }
 const editTodo = (i) =>{
@@ -147,7 +150,8 @@ const editTodo = (i) =>{
 
   saveEditIndex = (i)
   isEditing = true
-  updateTodoBtn.innerHTML = "Update Edit"
+  updateTodoBtn.innerHTML = "Update Todo"
+
 }
 
 const funCount = () =>{
