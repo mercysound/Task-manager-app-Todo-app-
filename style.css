@@ -8,6 +8,9 @@
   /* background-size: 70%, 50%; */
   
 }
+.welcom-bg{
+  background-color: rgba(57, 57, 71, 00.9);
+}
 #video-background{
   position: fixed;
   top: 0;
